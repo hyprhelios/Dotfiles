@@ -2,7 +2,25 @@
 
 Mis dotfiles personales para Arch Linux con Hyprland (Wayland).
 
-## Instalación
+## Instalación Automática
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/hyprhelios/Dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+
+# Ejecutar el script de instalación
+chmod +x install.sh
+./install.sh
+```
+
+El script instalará:
+- Todas las aplicaciones necesarias (pacman + AUR)
+- Las configuraciones como symlinks
+- Oh My Fish
+- Configurará Fish como shell por defecto
+
+## Instalación Manual
 
 ```bash
 git clone https://github.com/hyprhelios/Dotfiles.git ~/.dotfiles
@@ -14,65 +32,65 @@ cd ~/.dotfiles
 
 ### Gestores de Ventanas / Compositor
 
-| App | Descripción | Uso |
-|-----|-------------|-----|
-| **Hyprland** | Window manager tiling para Wayland, moderno y altamente configurable | `hyprland` para iniciar sesión |
-| **Hypridle** | Demonio de inactividad para Hyprland (bloqueo de pantalla, suspensión) | Se inicia automáticamente con Hyprland |
-| **Hyprlock** | Pantalla de bloqueo compatible con Hyprland | `hyprlock` o `Super + L` |
-| **Hyprpaper** | Gestor de wallpaper para Wayland | Configurado en `hyprpaper.conf` |
+| App | Descripción | Paquete |
+|-----|------------|---------|
+| **Hyprland** | Window manager tiling para Wayland | `hyprland` |
+| **Hypridle** | Demonio de inactividad | incluidos en hyprland |
+| **Hyprlock** | Pantalla de bloqueo | incluidos en hyprland |
+| **Hyprpaper** | Gestor de wallpaper | incluidos en hyprland |
 
 ### Terminales
 
-| App | Descripción | Uso |
-|-----|-------------|-----|
-| **Kitty** | Terminal GPU moderna y rápida | `kitty` |
-| **Ghostty** | Terminal de Zig (muy rápida, nativa Wayland) | `ghostty` |
+| App | Descripción | Paquete |
+|-----|------------|---------|
+| **Kitty** | Terminal GPU moderna | `kitty` |
+| **Ghostty** | Terminal de Zig | `ghostty` (AUR) |
 
 ### Shells
 
-| App | Descripción | Uso |
-|-----|-------------|-----|
-| **Fish** | Shell interactiva y amigable | `fish` como shell por defecto |
-| **Oh My Fish** | Framework para Fish | Plugins y temas para Fish |
-| **atuin** | Historial de comandos mejorado con sync | `atuin search`, `Ctrl+R` |
+| App | Descripción | Paquete |
+|-----|------------|---------|
+| **Fish** | Shell interactiva | `fish` |
+| **Oh My Fish** | Framework para Fish | [get.oh-my.fish](https://get.oh-my.fish) |
+| **atuin** | Historial mejorado | `atuin` (AUR) |
 
 ### Neovim
 
-| App | Descripción | Uso |
-|-----|-------------|-----|
-| **LazyVim** | Configuración de Neovim lista para usar | `nvim` |
+| App | Descripción | Paquete |
+|-----|------------|---------|
+| **LazyVim** | Configuración de Neovim | `neovim` |
 
 ### Herramientas del Sistema
 
-| App | Descripción | Uso |
-|-----|-------------|-----|
-| **Waybar** | Barras de estado altamente configurables para Wayland | Se inicia con Hyprland |
-| **Wofi** | Menú de aplicaciones estilo Wofi/Dmenu para Wayland | `Super + Espacio` |
-| **btop** | Monitor de sistema visual (CPU, RAM, red, procesos) | `btop` |
-| **fastfetch** | Información del sistema al estilo neofetch pero más rápido | `fastfetch` |
-| **cava** | Visualizador de audio en terminal | `cava` |
+| App | Descripción | Paquete |
+|-----|------------|---------|
+| **Waybar** | Barras de estado | `waybar` |
+| **Wofi** | Menú de aplicaciones | `wofi` |
+| **btop** | Monitor de sistema | `btop` |
+| **fastfetch** | Info sistema | `fastfetch` |
+| **cava** | Visualizador de audio | `cava` |
 
 ### Navegadores
 
-| App | Descripción | Uso |
-|-----|-------------|-----|
-| **Brave** | Navegador basado en Chromium con privacidad | `brave` |
-| **Google Chrome** | Navegador de Google | `google-chrome` |
+| App | Descripción | Paquete |
+|-----|------------|---------|
+| **Brave** | Navegador | `brave` |
+| **Google Chrome** | Navegador | `google-chrome` (AUR) |
 
 ### Utilidades
 
-| App | Descripción | Uso |
-|-----|-------------|-----|
-| **swww** | Gestor de wallpapers animado para Wayland | `swww-daemon`, `swww img` |
-| **waypaper** | Interfaz para cambiar wallpapers | `waypaper --random` |
-| **Hyprshot** | Herramienta de capturas de pantalla para Hyprland | `Super + Print` (pantalla), `Shift + Print` (región) |
+| App | Descripción | Paquete |
+|-----|------------|---------|
+| **swww** | Wallpapers animados | `swww` |
+| **waypaper** | Interfaz wallpapers | `waypaper` (AUR) |
+| **Hyprshot** | Capturas de pantalla | `hyprshot` (AUR) |
 
 ### Aplicaciones de Audio
 
-| App | Descripción | Uso |
-|-----|-------------|-----|
-| **EasyEffects** | EQ y efectos de audio para PulseAudio/PipeWire | `easyeffects` |
-| **PulseAudio** | Servidor de audio (control con wpctl) | `wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+` |
+| App | Descripción | Paquete |
+|-----|------------|---------|
+| **EasyEffects** | EQ y efectos | `easyeffects` |
+| **PipeWire** | Servidor de audio | `pipewire` |
 
 ## Atajos de Teclado (Hyprland)
 
@@ -81,7 +99,7 @@ cd ~/.dotfiles
 | `Super + Enter` | Abrir terminal (Ghostty) |
 | `Super + Q` | Cerrar ventana activa |
 | `Super + M` | Salir de Hyprland |
-| `Super + E` | Explorador de archivos (Nautilus) |
+| `Super + E` | Explorador de archivos |
 | `Super + Espacio` | Menú de aplicaciones (Wofi) |
 | `Super + V` | Ventana flotante |
 | `Super + P` | Pseudotiling |
@@ -93,9 +111,8 @@ cd ~/.dotfiles
 | `Super + F` | Pantalla completa |
 | `Super + 1-0` | Cambiar workspace |
 | `Super + Shift + 1-0` | Mover ventana a workspace |
-| `Super + Fechas` | Mover foco entre ventanas |
-| `Print` | Captura de pantalla (pantalla completa) |
-| `Shift + Print` | Captura de pantalla (región) |
+| `Print` | Captura de pantalla |
+| `Shift + Print` | Captura de región |
 
 ## Volumen y Brillo
 
@@ -122,18 +139,20 @@ la="eza -la --icons"             # Lista con ocultos
 
 ```
 .
+├── install.sh                   # Script de instalación
 ├── .bashrc, .bash_profile       # Config de Bash
 ├── .gitconfig                   # Config de Git
+├── .yarnrc                      # Config de Yarn
 ├── .config/
 │   ├── hypr/                    # Hyprland + idle + lock
-│   ├── kitty/                  # Terminal Kitty
+│   ├── kitty/                   # Terminal Kitty
 │   ├── ghostty/                 # Terminal Ghostty
-│   ├── nvim/                   # Neovim (LazyVim)
-│   ├── fish/                   # Fish shell
-│   ├── waybar/                 # Status bar
-│   ├── wofi/                   # Menú de apps
-│   ├── btop/                   # Monitor sistema
-│   ├── fastfetch/              # Info sistema
+│   ├── nvim/                    # Neovim (LazyVim)
+│   ├── fish/                    # Fish shell
+│   ├── waybar/                  # Status bar
+│   ├── wofi/                    # Menú de apps
+│   ├── btop/                    # Monitor sistema
+│   ├── fastfetch/               # Info sistema
 │   └── ...
 └── README.md
 ```
