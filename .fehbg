@@ -1,2 +1,0 @@
-#!/bin/sh
-feh --no-fehbg --bg-fill --image-bg '#ffffff' '/home/mizr4im/Imágenes/wallpaper/Comp.png' 
