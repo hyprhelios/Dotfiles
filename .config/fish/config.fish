@@ -1,4 +1,7 @@
 if status is-interactive
+    # --- 0. PATH ---
+    set -g fish_user_paths $HOME/.local/bin $fish_user_paths
+
     # --- 1. INICIALIZACIÓN DEL SISTEMA ---
     set -g fish_greeting ""      # Elimina el saludo por defecto
     fastfetch                    # Información del sistema al inicio
@@ -35,8 +38,9 @@ if status is-interactive
     alias bot="cd ~/Documentos/proyecto/bot/; and source venv/bin/activate.fish"
     
     # --- 6. STREAMING (TWITCH) ---
-    alias leo='streamlink -p mpv twitch.tv/gohuntleo best'
-    alias 666="streamlink -p mpv twitch.tv/shadoune666 best"
+    alias leo='npv gohuntleo'
+    alias 666='npv shadoune666'
+    alias cold='streamlink https://www.twitch.tv/coldified'
 
     # --- 7. CONFIGURACIÓN FZF (MODO NINJA) ---
     # Activa los atajos Ctrl+R, Ctrl+T, Alt+C
