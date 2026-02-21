@@ -10,10 +10,7 @@
     "width": 14
   },
   "display": {
-    "separator": " ",
-    "color": {
-      "output": "green"
-    }
+    "separator": "  "
   },
   "modules": [
     {
@@ -25,65 +22,64 @@
       }
     },
     {
-      "type": "custom",
-      "format": "\u001b[32m------------------------------------------\u001b[0m"
-    },
-    // --- SECCIÓN OS ---
-    {
       "type": "os",
-      "key": "\u001b[36m󰣇 OS   \u001b[36m├─ \u001b[31m󰣇 \u001b[31m󰁔\u001b[0m",
-      "format": "{3}"
+      "key": "    \u001b[36m├─\u001b[0m \u001b[31m󰣇\u001b[0m",
+      "format": " {3}"
     },
     {
       "type": "kernel",
-      "key": "\u001b[36m       ├─ \u001b[31m \u001b[31m󰁔\u001b[0m"
+      "key": "    \u001b[36m├─\u001b[0m \u001b[31m\u001b[0m",
+      "format": " {1} {2}"
     },
     {
       "type": "packages",
-      "key": "\u001b[36m       ├─ \u001b[31m \u001b[31m󰁔\u001b[0m",
-      "format": "{1} (pacman)"
+      "key": "    \u001b[36m├─\u001b[0m \u001b[31m\u001b[0m",
+      "format": " {1} (pacman)"
     },
     {
       "type": "shell",
-      "key": "\u001b[36m       └─ \u001b[31m \u001b[31m󰁔\u001b[0m"
+      "key": "    \u001b[36m└─\u001b[0m \u001b[31m\u001b[0m",
+      "format": " {1}"
     },
-    { "type": "custom", "format": "\u001b[36m\u001b[0m" }, // Espacio simple
-    // --- SECCIÓN WM ---
+    { "type": "custom", "format": "" },
     {
       "type": "wm",
-      "key": "\u001b[36m WM   \u001b[36m├─ \u001b[31m \u001b[31m󰁔\u001b[0m"
+      "key": "    \u001b[36m├─\u001b[0m \u001b[31m\u001b[0m",
+      "format": " {3}"
     },
     {
       "type": "terminal",
-      "key": "\u001b[36m       ├─ \u001b[31m \u001b[31m󰁔\u001b[0m"
+      "key": "    \u001b[36m├─\u001b[0m \u001b[31m\u001b[0m",
+      "format": " {1}"
     },
     {
       "type": "terminalfont",
-      "key": "\u001b[36m       └─ \u001b[31m \u001b[31m󰁔\u001b[0m"
+      "key": "    \u001b[36m└─\u001b[0m \u001b[31m\u001b[0m",
+      "format": " {1}"
     },
-    { "type": "custom", "format": "\u001b[36m\u001b[0m" },
-    // --- SECCIÓN PC ---
+    { "type": "custom", "format": "" },
     {
       "type": "host",
-      "key": "\u001b[36m PC   \u001b[36m├─ \u001b[31m󰌢 \u001b[31m󰁔\u001b[0m"
+      "key": "    \u001b[36m─\u001b[0m \u001b[31m󰌢\u001b[0m",
+      "format": " HP 245 G4 Notebook PC"
     },
     {
       "type": "cpu",
-      "key": "\u001b[36m       ├─ \u001b[31m \u001b[31m󰁔\u001b[0m"
+      "key": "    \u001b[36m├─\u001b[0m \u001b[31m\u001b[0m",
+      "format": " {1}"
     },
     {
       "type": "memory",
-      "key": "\u001b[36m       ├─ \u001b[31m \u001b[31m󰁔\u001b[0m",
-      "format": "{1} / {2} ({3})"
+      "key": "    \u001b[36m├─\u001b[0m \u001b[31m\u001b[0m",
+      "format": " {1} / {2} ({3})"
     },
     {
       "type": "disk",
-      "key": "\u001b[36m       └─ \u001b[31m󰋊 \u001b[31m󰁔\u001b[0m",
+      "key": "    \u001b[36m└─\u001b[0m \u001b[31m󰋊\u001b[0m",
+      "format": " {1} / {2} ({3}) - {5}",
       "folders": "/"
     },
-    // --- RELLENO PARA EXTENDER VERTICALMENTE ---
-    // Añadimos líneas vacías con la rama vertical para que coincida con la altura de la imagen
-    { "type": "custom", "format": "" }, 
+    { "type": "custom", "format": "" },
     { "type": "custom", "format": "" },
     { "type": "custom", "format": "" },
     { "type": "custom", "format": "" },
