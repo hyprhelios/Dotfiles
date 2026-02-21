@@ -8,8 +8,10 @@ image/jpeg=org.gnome.Loupe.desktop
 application/pdf=org.gnome.Evince.desktop
 x-scheme-handler/betterdiscord=discord.desktop
 video/mp4=vlc.desktop
+text/markdown=obsidian.desktop
 
 [Added Associations]
 image/jpeg=org.gnome.Loupe.desktop;
 application/pdf=org.gnome.Evince.desktop;
 video/mp4=vlc.desktop;
+text/markdown=obsidian.desktop;
