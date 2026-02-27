@@ -41,7 +41,6 @@ echo ">> Instalando aplicaciones principales (pacman)..."
 
 packages_pacman=(
     "hyprland"
-    "kitty"
     "fish"
     "neovim"
     "waybar"
@@ -145,7 +144,6 @@ link_config() {
 link_config ".config/fastfetch"
 link_config ".config/fish"
 link_config ".config/hypr"
-link_config ".config/kitty"
 link_config ".config/nvim"
 link_config ".config/waybar"
 link_config ".config/wofi"
