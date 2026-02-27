@@ -9,6 +9,8 @@ application/pdf=org.gnome.Evince.desktop
 x-scheme-handler/betterdiscord=discord.desktop
 video/mp4=vlc.desktop
 text/markdown=obsidian.desktop
+x-scheme-handler/terminal=com.mitchellh.ghostty.desktop
+x-scheme-handler/x-terminal-emulator=com.mitchellh.ghostty.desktop
 
 [Added Associations]
 image/jpeg=org.gnome.Loupe.desktop;
