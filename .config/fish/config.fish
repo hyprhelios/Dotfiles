@@ -31,6 +31,9 @@ if status is-interactive
     # la: Igual que ll pero incluye archivos ocultos
     alias la="eza --icons --long --header --all --no-permissions --no-user --no-time --group-directories-first"
 
+    # lx: Lista completa (permisos, usuario, grupo, tamaño, fecha, iconos)
+    alias lx="eza --icons --long --header --group-directories-first"
+
     # --- 5. ALIAS COMPLEJOS (TUS SCRIPTS) ---
     # Nota: Se añade '&&' implícito o bloques para asegurar ejecución limpia
     alias seeker="cd ~/seeker; and python3 seeker.py"
@@ -40,7 +43,10 @@ if status is-interactive
     # --- 6. STREAMING (TWITCH) ---
     alias leo='npv gohuntleo'
     alias 666='npv shadoune666'
-    alias cold='streamlink https://www.twitch.tv/coldified'
+    alias cold='npv coldified'
+    alias aurigas='npv aurigas'
+    alias juja='npv jujalag'
+    alias rubius='npv rubius'
 
     # --- 7. CONFIGURACIÓN FZF (MODO NINJA) ---
     # Activa los atajos Ctrl+R, Ctrl+T, Alt+C
@@ -58,12 +64,12 @@ if status is-interactive
 
     # [fzp] - Previsualizar archivos
     function fzp
-        fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'
+        fzf --preview "bat --style=numbers --color=always --line-range :500 {}"
     end
 
     # [fzn] - Buscar y abrir en NEOVIM
     function fzn
-        set -l file (fzf --preview 'bat --style=numbers --color=always --line-range :500 {}')
+        set -l file (fzf --preview "bat --style=numbers --color=always --line-range :500 {}")
         if test -n "$file"
             nvim $file
         end
@@ -72,7 +78,7 @@ if status is-interactive
     # [fzz] - Navegar subdirectorios usando ZOXIDE + EZA Preview
     # Busca carpetas recursivamente y salta a ellas con 'z' para actualizar el historial
     function fzz
-        set -l dir (fd --type d --hidden --exclude .git | fzf --preview 'eza --tree --level=2 --icons=always --color=always {}')
+        set -l dir (fd --type d --hidden --exclude .git | fzf --preview "eza --tree --level=2 --icons=always --color=always {}")
         if test -n "$dir"
             z $dir
         end
