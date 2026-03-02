@@ -3,9 +3,9 @@ if status is-interactive
     set -g fish_user_paths $HOME/.local/bin $fish_user_paths
 
     # --- 1. INICIALIZACIÓN DEL SISTEMA ---
-    set -g fish_greeting ""      # Elimina el saludo por defecto
-    fastfetch                    # Información del sistema al inicio
-    zoxide init fish | source    # Inicializa 'z' para saltos rápidos
+    set -g fish_greeting "" # Elimina el saludo por defecto
+    fastfetch # Información del sistema al inicio
+    zoxide init fish | source # Inicializa 'z' para saltos rápidos
 
     # --- 2. GESTIÓN DE PAQUETES Y SISTEMA (TUS ALIAS) ---
     alias syu="sudo pacman -Syu"
@@ -13,21 +13,34 @@ if status is-interactive
     alias deleted="sudo pacman -Rns"
     alias auditor="sudo lynis audit system"
     alias off="sudo poweroff"
-    alias r="rm -rf"
     
+    # Función segura para rm -rf con confirmación
+    function r
+        if test (count $argv) -eq 0
+            echo "Usage: r <file>... (requires confirmation)"
+            return 1
+        end
+        read -p "Confirm rm -rf (y/N): " confirm
+        if test "$confirm" = "y"
+            command rm -rf $argv
+        else
+            echo "Aborted"
+        end
+    end
+
     # --- 3. ATAJOS DE APLICACIONES ---
     alias n="nvim"
-    alias ranger="yazi"          # Reemplazo moderno de ranger
+    alias ranger="yazi" # Reemplazo moderno de ranger
     alias anime="ani-cli"
-    alias cat='bat'              # Cat mejorado con colores
+    alias cat='bat' # Cat mejorado con colores
 
     # --- 4. ALIAS DE NAVEGACIÓN Y EZA (PERSONALIZADO) ---
     # ls: Básico con iconos
     alias ls="eza --icons --group-directories-first"
-    
+
     # ll: Lista detallada MINIMALISTA (Solo tamaño, nombre e icono)
     alias ll="eza --icons --long --header --no-permissions --no-user --no-time --group-directories-first"
-    
+
     # la: Igual que ll pero incluye archivos ocultos
     alias la="eza --icons --long --header --all --no-permissions --no-user --no-time --group-directories-first"
 
@@ -35,11 +48,10 @@ if status is-interactive
     alias lx="eza --icons --long --header --group-directories-first"
 
     # --- 5. ALIAS COMPLEJOS (TUS SCRIPTS) ---
-    # Nota: Se añade '&&' implícito o bloques para asegurar ejecución limpia
     alias seeker="cd ~/seeker; and python3 seeker.py"
     alias link="ssh -R 80:localhost:8080 nokey@localhost.run"
-    alias bot="cd ~/Documentos/proyecto/bot/; and source venv/bin/activate.fish"
-    
+    alias bot="cd $PROYECTO_BOT_PATH; and source venv/bin/activate.fish"
+
     # --- 6. STREAMING (TWITCH) ---
     alias leo='npv gohuntleo'
     alias 666='npv shadoune666'
@@ -47,6 +59,7 @@ if status is-interactive
     alias aurigas='npv aurigas'
     alias juja='npv jujalag'
     alias rubius='npv rubius'
+    alias ibai='npv ibai'
 
     # --- 7. CONFIGURACIÓN FZF (MODO NINJA) ---
     # Activa los atajos Ctrl+R, Ctrl+T, Alt+C

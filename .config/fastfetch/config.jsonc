@@ -60,8 +60,7 @@
     { "type": "custom", "format": "" },
     {
       "type": "host",
-      "key": "    \u001b[36m─\u001b[0m \u001b[31m󰌢\u001b[0m",
-      "format": " HP 245 G4 Notebook PC"
+      "key": "    \u001b[36m─\u001b[0m \u001b[31m󰌢\u001b[0m"
     },
     {
       "type": "cpu",
@@ -79,9 +78,6 @@
       "format": " {1} / {2} ({3}) - {5}",
       "folders": "/"
     },
-    { "type": "custom", "format": "" },
-    { "type": "custom", "format": "" },
-    { "type": "custom", "format": "" },
     { "type": "custom", "format": "" },
     {
       "type": "colors",

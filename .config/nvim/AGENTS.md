@@ -7,6 +7,7 @@ This is a LazyVim-based Neovim configuration. Agents working on this codebase sh
 - **Framework**: LazyVim (Neovim distribution)
 - **Language**: Lua (Neovim plugin development)
 - **Plugin Manager**: lazy.nvim
+- **Repository**: Git (own repo separate from home dotfiles)
 
 ## Directory Structure
 
@@ -21,10 +22,38 @@ nvim/
 │   │   └── autocmds.lua     # Autocommands
 │   └── plugins/             # Plugin specifications
 │       ├── colorscheme.lua  # Theme configuration
-│       └── *.lua            # Other plugin configurations
+│       ├── dashboard.lua    # Snacks dashboard + picker + explorer
+│       ├── terminal.lua     # Terminal configuration
+│       └── smear_cursor.lua # Cursor effects
 ├── stylua.toml             # Lua formatter config
-└── lazy-lock.json          # Locked plugin versions
+├── lazy-lock.json          # Locked plugin versions
+└── .gitignore             # Git ignore (excludes lazy-lock.json)
 ```
+
+## Recent Changes (2026-03-01)
+
+### Git Repository Setup
+- Created separate git repository for `~/.config/nvim/` (independent from home dotfiles)
+- Purpose: Better isolation, portability, and clean git history
+
+### Snacks Picker Configuration
+- Enabled `picker` and `explorer` modules in snacks.nvim
+- Git status is accessed via `<leader>gs` (picker view, not tree indicators)
+- Note: snacks.explorer does not show git status in tree view (use picker for git status)
+
+### Git Keymaps Added
+- `<leader>gc` - Git commit (with vim.ui.input for message)
+- `<leader>ga` - Git add all (with notification)
+- `<leader>gp` - Git push (requires remote configured)
+
+### Code Refactoring (2026-03-01)
+Applied DRY principles to lua configuration files:
+
+- **terminal.lua**: Added `event = "VeryLazy"` for lazy loading, moved require inside keymap functions
+- **keymaps.lua**: Added `run_git_cmd()` helper to eliminate duplicated git command logic
+- **dashboard.lua**: Extracted header to `HOLO_NIGHT_HEADER` constant for better readability
+
+All keymaps preserved - no breaking changes.
 
 ## Build/Lint/Test Commands
 
@@ -216,3 +245,155 @@ local handle = vim.fn.jobstart({ "command" }, {
 - [Neovim Lua Guide](https://neovim.io/doc/user/lua-guide.html)
 - [stylua](https://github.com/JohnnyMorganz/StyLua)
 - [luacheck](https://github.com/mpeterv/luacheck)
+
+## Installed Plugins
+
+### Core (LazyVim Base)
+
+| Plugin | Description | Function |
+|--------|-------------|----------|
+| LazyVim/LazyVim | Base distribution | Core framework |
+| folke/lazy.nvim | Plugin manager | Lazy loading and management |
+| folke/snacks.nvim | QoL utilities | Dashboard, picker, explorer, terminal |
+| folke/tokyonight.nvim | Colorscheme | Theme (tokyonight night) |
+
+### Editor Enhancement
+
+| Plugin | Description | Function |
+|--------|-------------|----------|
+| smol-ai/blink.cmp | Completion | AI-powered completion |
+| nvim-lspconfig | LSP | Language Server Protocol |
+| neovim/nvim-lint | Linting | Inline linting |
+| stevearc/conform.nvim | Formatting | Code formatting |
+| nvim-treesitter/nvim-treesitter | Syntax | Syntax highlighting |
+| nvim-treesitter-textobjects | Treesitter textobjects | textobject selection |
+| windwp/nvim-ts-autotag | Autotag | Auto close/rename HTML tags |
+
+### UI Components
+
+| Plugin | Description | Function |
+|--------|-------------|----------|
+| akinsho/bufferline.nvim | Bufferline | Tab bar for buffers |
+| nvim-lualine/lualine.nvim | Statusline | Bottom status line |
+| folke/noice.nvim | UI | Better messages, cmdline, popups |
+| folke/trouble.nvim | Diagnostics | Diagnostics list view |
+| folke/which-key.nvim | Which-key | Keybinding hints popup |
+
+### Git Integration
+
+| Plugin | Description | Function |
+|--------|-------------|----------|
+| lewis6991/gitsigns.nvim | Git signs | Git decorations in gutter |
+| kkosmo/grug-far.nvim | Git search | Grep replace in git |
+
+### Tools
+
+| Plugin | Description | Function |
+|--------|-------------|----------|
+| folke/todo-comments.nvim | Todo comments | Highlight TODO/FIX in code |
+| folke/persistence.nvim | Persistence | Session preservation |
+| jose-elias-alvarez/venv-selector.nvim | Venv selector | Python virtual env selector |
+| jesseduffield/lazygit.nvim | LazyGit | Git integration |
+
+### Terminal
+
+| Plugin | Description | Function |
+|--------|-------------|----------|
+| akinsho/toggleterm.nvim | Toggle terminal | Floating terminals |
+
+### Cursor Effects
+
+| Plugin | Description | Function |
+|--------|-------------|----------|
+| aszoke/smear-cursor.nvim | Smear cursor | Cursor trail effect |
+
+### Mini Plugins (LazyVim)
+
+| Plugin | Description | Function |
+|--------|-------------|----------|
+| echasnovski/mini.ai | textobjects | Better textobjects |
+| echasnovski/mini.pairs | Auto pairs | Auto closing brackets |
+| echasnovski/mini.icons | Icons | File type icons |
+
+### Snippets
+
+| Plugin | Description | Function |
+|--------|-------------|----------|
+| rafamadriz/friendly-snippets | Snippets | Code snippets |
+
+### Development Tools
+
+| Plugin | Description | Function |
+|--------|-------------|----------|
+| williamboman/mason.nvim | Mason | LSP/DAP installer |
+| williamboman/mason-lspconfig.nvim | Mason LSPConfig | LSP configuration |
+| folke/lazydev.nvim | LazyDev | Lua development |
+| b0o/SchemaStore.nvim | Schema Store | JSON schema validation |
+
+## Keymaps Summary
+
+### File Operations
+
+| Keymap | Command | Description |
+|--------|---------|-------------|
+| `<leader>e` | Snacks.explorer() | File Explorer |
+| `<leader><space>` | Snacks.picker.smart() | Smart Find Files |
+| `<leader>ff` | Snacks.picker.files() | Find Files |
+| `<leader>fb` | Snacks.picker.buffers() | Buffers |
+| `<leader>fc` | Snacks.picker.files(cwd=config) | Find Config File |
+| `<leader>fr` | Snacks.picker.recent() | Recent Files |
+
+### Git Operations
+
+| Keymap | Command | Description |
+|--------|---------|-------------|
+| `<leader>gs` | Snacks.picker.git_status() | Git Status |
+| `<leader>gd` | Snacks.picker.git_diff() | Git Diff (hunks) |
+| `<leader>gD` | Snacks.picker.git_diff(origin) | Git Diff (origin) |
+| `<leader>gl` | Snacks.picker.git_log() | Git Log |
+| `<leader>gS` | Snacks.picker.git_stash() | Git Stash |
+| `<leader>gc` | vim.ui.input + git commit | Git Commit (with message) |
+| `<leader>ga` | git add -A | Git Add all (with notification) |
+| `<leader>gp` | git push | Git Push (requires remote) |
+| `<leader>oo` | ToggleTerm | Open Terminal |
+| `<leader>ot` | ToggleTerm | Open Terminal (toggle) |
+
+### Search & Picker
+
+| Keymap | Command | Description |
+|--------|---------|-------------|
+| `<leader>/` | Snacks.picker.search() | Search |
+| `<leader>sg` | Snacks.picker.grep() | Grep |
+| `<leader>sw` | Snacks.picker.words() | Workspace words |
+| `<leader>sd` | Snacks.picker.diagnostics() | Diagnostics |
+| `<leader>sh` | Snacks.picker.help() | Help |
+
+### LSP
+
+| Keymap | Command | Description |
+|--------|---------|-------------|
+| `gd` | Snacks.picker.lsp_definitions() | Goto Definition |
+| `gr` | Snacks.picker.lsp_references() | References |
+| `gI` | Snacks.picker.lsp_implementations() | Goto Implementation |
+| `gy` | Snacks.picker.lsp_type_definitions() | Goto Type Definition |
+| `<leader>ss` | Snacks.picker.lsp_symbols() | LSP Symbols |
+| `<leader>sS` | Snacks.picker.lsp_workspace_symbols() | Workspace Symbols |
+
+### Window & Layout
+
+| Keymap | Command | Description |
+|--------|---------|-------------|
+| `<C-d>` | Scroll down | Scroll down |
+| `<C-u>` | Scroll up | Scroll up |
+| `<C-w>` | Window navigation | Standard vim navigation |
+
+### Misc
+
+| Keymap | Command | Description |
+|--------|---------|-------------|
+| `<leader>uC` | Snacks.picker.colorschemes() | Colorschemes |
+| `<leader>u` | Undotree | Undo tree |
+| `<leader>st` | Snacks.picker.todo_comments() | Todo comments |
+| `<leader>sT` | Snacks.picker.todo_comments(TODO/FIX) | Todo/Fix |
+| `<leader>x` | Trouble | Toggle Trouble |
+| `<leader>cs` | Conform | Format |

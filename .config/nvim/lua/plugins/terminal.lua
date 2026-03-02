@@ -1,6 +1,7 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
+  event = "VeryLazy",
   config = function()
     require("toggleterm").setup({
       direction = "vertical",
@@ -28,7 +29,7 @@ return {
     {
       "<leader>ot",
       "<cmd>ToggleTerm<cr>",
-      desc = "Close terminal",
+      desc = "Toggle terminal",
     },
     {
       "<leader>oh",
@@ -37,6 +38,7 @@ return {
         local term = Terminal:new({
           direction = "horizontal",
           size = 20,
+          close_on_exit = false,
         })
         term:toggle()
       end,
@@ -49,6 +51,7 @@ return {
         local term = Terminal:new({
           direction = "vertical",
           size = math.floor(vim.o.columns * 0.30),
+          close_on_exit = false,
         })
         term:toggle()
       end,
@@ -63,6 +66,7 @@ return {
           float_opts = {
             border = "curved",
           },
+          close_on_exit = false,
         })
         term:toggle()
       end,
@@ -75,6 +79,7 @@ return {
         local term = Terminal:new({
           direction = "vertical",
           size = math.floor(vim.o.columns * 0.25),
+          close_on_exit = false,
         })
         term:toggle()
       end,
