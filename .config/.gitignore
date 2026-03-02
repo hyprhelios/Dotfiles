@@ -1,0 +1,72 @@
+# ===========================================
+# APP CACHES - IGNORAR (son datos efímeros)
+# ===========================================
+
+# Browsers - caches enormes
+google-chrome/
+BraveSoftware/
+
+# Discord - módulos + caches + voice
+discord/
+
+# Electron apps - caches
+Electron/
+BetterDiscord/
+BetterDiscord Installer/
+
+# App data & caches
+obsidian/
+flutter/
+go/
+
+# Logs & tmp
+*.log
+*~
+*.tmp
+
+# ===========================================
+# SYMLINKS - YA ESTÁN EN OTRO REPO
+# ===========================================
+btop
+ghostty
+hypr
+kitty
+waybar
+wofi
+
+# ===========================================
+# OTROS - DATOS EFÍMEROS
+# ===========================================
+dconf/
+procps/
+pulse/
+yay/
+gh/
+opencode/
+pnpm/
+ibus/
+goa-1.0/
+menus/
+gtk-3.0/
+gtk-4.0/
+fontconfig/
+font-manager/
+mpv/
+nautilus/
+ngrok/
+qBittorrent/
+rncbc.org/
+simple-scan/
+spicetify/
+streamlink/
+vlc/
+xfce4/
+yazi/
+zed/
+easyeffects/
+GIMP/
+krokiet/
+io.safing.portmaster/
+omf/
+systemd/
+btop/
