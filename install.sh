@@ -122,8 +122,8 @@ echo ""
 echo ">> Creando symlinks..."
 
 link_config() {
-    local src="$DOTFILES_DIR/$1"
-    local dest="$HOME/$1"
+    local src="$DOTFILES_DIR/.config/$1"
+    local dest="$HOME/.config/$1"
     
     if [ -e "$dest" ] || [ -L "$dest" ]; then
         if [ -L "$dest" ]; then
@@ -141,18 +141,12 @@ link_config() {
     ln -sf "$src" "$dest"
 }
 
-link_config ".config/fastfetch"
-link_config ".config/fish"
-link_config ".config/hypr"
-link_config ".config/nvim"
-link_config ".config/waybar"
-link_config ".config/wofi"
-link_config ".config/btop"
-link_config ".config/cava"
-link_config ".bashrc"
-link_config ".bash_profile"
-link_config ".gitconfig"
-link_config ".yarnrc"
+link_config "fastfetch"
+link_config "fish"
+link_config "nvim"
+link_config "atuin"
+link_config "cava"
+link_config "waypaper"
 
 echo ""
 echo ">> Configurando shell por defecto..."
@@ -178,4 +172,3 @@ echo "Próximos pasos:"
 echo "  1. Reinicia tu sesión"
 echo "  2. Inicia Hyprland con: Hyprland"
 echo "  3. Configura tu monitor en ~/.config/hypr/monitors.conf"
-echo ""
