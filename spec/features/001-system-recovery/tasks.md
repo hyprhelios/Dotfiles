@@ -7,4 +7,4 @@
 - [x] Actualizar el instalador.
 - [x] Actualizar README y reglas de exclusion.
 - [x] Ejecutar validaciones y registrar evidencia.
-- [ ] Crear commit y publicar mediante SSH.
+- [x] Crear commit y publicar mediante SSH.
