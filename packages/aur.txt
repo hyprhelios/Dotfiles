@@ -1,0 +1,9 @@
+ani-cli
+brave-bin
+quickshell-git
+spotatui-bin
+spotube-bin
+ttf-google-sans
+ttf-readex-pro
+yay
+zen-browser-bin

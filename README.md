@@ -1,104 +1,89 @@
 # Dotfiles
 
-Mis dotfiles personales para Arch Linux con Hyprland (Wayland).
+Respaldo reproducible de mi escritorio Arch Linux con Hyprland.
 
-## Instalación Automática
+Este repositorio contiene configuraciones, temas, wallpapers, scripts y manifiestos de paquetes necesarios para reconstruir el entorno despues de una reinstalacion.
+
+## Restauracion
+
+En una instalacion nueva de Arch Linux:
 
 ```bash
+sudo pacman -S --needed git
 git clone https://github.com/hyprhelios/Dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-chmod +x install.sh
 ./install.sh
 ```
 
-El script instalará:
-- Todas las aplicaciones necesarias (pacman + AUR)
-- Las configuraciones como symlinks
-- Oh My Fish
-- Configurará Fish como shell por defecto
+El instalador:
 
-## Instalación Manual
+- Actualiza Arch Linux e instala los paquetes oficiales del manifiesto.
+- Instala `yay` cuando no esta disponible e instala los paquetes AUR.
+- Conserva configuraciones existentes con el sufijo `.backup.FECHA`.
+- Crea enlaces simbolicos desde el repositorio hacia el directorio personal.
+- No sobrescribe un enlace que ya apunta al archivo correcto.
+
+El proceso pide confirmacion mediante `pacman`, `makepkg` o `yay` cuando corresponde. Al finalizar, se recomienda cerrar la sesion y volver a iniciar Hyprland.
+
+Para usar Fish como shell predeterminado:
 
 ```bash
-git clone https://github.com/hyprhelios/Dotfiles.git ~/.dotfiles
+chsh -s "$(command -v fish)"
+```
+
+## Contenido
+
+| Ruta | Contenido |
+|------|-----------|
+| `.config/hypr` | Hyprland, Hypridle, Hyprlock y tema activo |
+| `.config/waybar` | Barra, modulos y colores |
+| `.config/ghostty` | Terminal y tema generado |
+| `.config/wofi` | Lanzador de aplicaciones |
+| `.config/fuzzel` | Tema alternativo del lanzador |
+| `.config/fish` | Shell, abreviaciones y funciones |
+| `.config/nvim` | Neovim basado en LazyVim |
+| `.config/btop` | Monitor del sistema y tema |
+| `.local/bin` | Scripts de wallpaper y cambio de tema |
+| `.local/share/dots-hyprland` | Tres temas y sus wallpapers |
+| `packages/pacman.txt` | Paquetes oficiales instalados explicitamente |
+| `packages/aur.txt` | Paquetes AUR instalados explicitamente |
+
+## Temas
+
+`Super + T` alterna entre los temas `barch`, `img1084` y `7ucM1Zw`. El script actualiza Hyprland, Hyprlock, Ghostty, Waybar, Wofi, Fuzzel y GTK usando los archivos de `.local/share/dots-hyprland`.
+
+## Actualizar El Respaldo
+
+Antes de copiar cambios al repositorio, revisar que no contengan secretos ni datos efimeros. Los manifiestos se regeneran con:
+
+```bash
+pacman -Qqen > ~/.dotfiles/packages/pacman.txt
+pacman -Qqem > ~/.dotfiles/packages/aur.txt
+```
+
+Luego se revisan y publican los cambios:
+
+```bash
 cd ~/.dotfiles
+git status
+git diff
+git add --all
+git commit -m "Update system recovery dotfiles"
+git push
 ```
 
-Los archivos se copian manualmente a `~/.config/`
+## Seguridad
 
-## Configuraciones Incluidas
+El repositorio es publico. No se deben versionar:
 
-| App | Descripción |
-|-----|-------------|
-| **Fish** | Shell interactiva con Oh My Fish |
-| **Neovim** | Editor basado en LazyVim |
-| **Fastfetch** | Información del sistema |
-| **CAVA** | Visualizador de audio para waybar |
-| **Atuin** | Historial mejorado para shell |
-| **Waypaper** | Gestor de wallpapers |
+- Claves SSH o GPG.
+- Tokens, contrasenas o archivos `.env`.
+- Historial de comandos o sesiones de aplicaciones.
+- Perfiles y caches de navegadores.
+- Bases de datos personales de Obsidian u otras aplicaciones.
 
-## Aplicaciones Instaladas (sin config en repo)
+`fish_variables` se excluye porque puede almacenar variables universales y rutas especificas del equipo.
 
-El installer instala estas apps pero sus configs están en otro repositorio:
+## Alcance
 
-| App | Descripción | Paquete |
-|-----|------------|---------|
-| **Hyprland** | Window manager tiling Wayland | `hyprland` |
-| **Ghostty** | Terminal moderna | `ghostty` (AUR) |
-| **Waybar** | Barra de estado | `waybar` |
-| **Wofi** | Menú de apps | `wofi` |
-| **Btop** | Monitor sistema | `btop` |
-| **Brave** | Navegador | `brave` |
-| **Google Chrome** | Navegador | `google-chrome` (AUR) |
-
-## Atajos de Teclado (Hyprland)
-
-| Atajo | Acción |
-|-------|--------|
-| `Super + Enter` | Abrir terminal |
-| `Super + Q` | Cerrar ventana |
-| `Super + M` | Salir de Hyprland |
-| `Super + Espacio` | Menú de apps |
-| `Super + F` | Pantalla completa |
-| `Super + 1-0` | Cambiar workspace |
-| `Super + Shift + 1-0` | Mover a workspace |
-| `Print` | Captura de pantalla |
-
-## Alias Útiles (Fish)
-
-```fish
-alias syu="sudo pacman -Syu"
-alias s="sudo pacman -S"
-alias n="nvim"
-alias ls="eza --icons"
-alias ll="eza -la --icons"
-```
-
-## Estructura de Archivos
-
-```
-.
-├── install.sh
-├── README.md
-└── .config/
-    ├── atuin/          # Historial shell
-    ├── cava/           # Visualizador audio
-    ├── fastfetch/     # Info sistema
-    ├── fish/          # Shell config
-    ├── nvim/          # Neovim (LazyVim)
-    └── waypaper/      # Wallpaper manager
-```
-
-## Dependencias
-
-### AUR Helper
-- `yay`
-
-### Paquetes Principales
-- `hyprland`, `fish`, `neovim`, `waybar`, `wofi`, `btop`
-- `fastfetch`, `cava`, `easyeffects`, `yazi`
-- `brave`, `ghostty` (AUR), `google-chrome` (AUR)
-
-### Utilidades
-- `eza`, `bat`, `fzf`, `zoxide`, `fd`, `ripgrep`
-- `playerctl`, `brightnessctl`, `networkmanager`
+Los manifiestos reflejan el equipo actual e incluyen componentes de GNOME, Hyprland y controladores AMD. Antes de usarlos en hardware diferente conviene revisar `packages/pacman.txt`, especialmente microcodigo, controladores graficos y paquetes del kernel.

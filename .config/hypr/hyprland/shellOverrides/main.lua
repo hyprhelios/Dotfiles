@@ -1,0 +1,1 @@
+-- Hyprland shell overrides (managed by Quickshell HyprlandConfig)

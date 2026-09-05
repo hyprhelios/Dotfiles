@@ -7,7 +7,7 @@ This is a LazyVim-based Neovim configuration. Agents working on this codebase sh
 - **Framework**: LazyVim (Neovim distribution)
 - **Language**: Lua (Neovim plugin development)
 - **Plugin Manager**: lazy.nvim
-- **Repository**: Git (own repo separate from home dotfiles)
+- **Repository**: Part of the home dotfiles repository
 
 ## Directory Structure
 
@@ -26,15 +26,13 @@ nvim/
 │       ├── terminal.lua     # Terminal configuration
 │       └── smear_cursor.lua # Cursor effects
 ├── stylua.toml             # Lua formatter config
-├── lazy-lock.json          # Locked plugin versions
-└── .gitignore             # Git ignore (excludes lazy-lock.json)
+└── lazy-lock.json          # Locked plugin versions for reproducible installs
 ```
 
 ## Recent Changes (2026-03-01)
 
 ### Git Repository Setup
-- Created separate git repository for `~/.config/nvim/` (independent from home dotfiles)
-- Purpose: Better isolation, portability, and clean git history
+- Included in the home dotfiles repository for reproducible recovery
 
 ### Snacks Picker Configuration
 - Enabled `picker` and `explorer` modules in snacks.nvim

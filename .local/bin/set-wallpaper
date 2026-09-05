@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+STATE_FILE="$HOME/.local/share/dots-hyprland/themes/.current"
+WALLPAPER_DIR="$HOME/.local/share/dots-hyprland/wallpapers"
+RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp}"
+
+exec 9>"$RUNTIME_DIR/set-wallpaper-$UID.lock"
+flock 9
+
+if [ "$#" -gt 0 ]; then
+    WALLPAPER_PATH="$1"
+else
+    CURRENT="barch"
+    if [ -f "$STATE_FILE" ]; then
+        CURRENT="$(<"$STATE_FILE")"
+    fi
+    case "$CURRENT" in
+        barch) WALLPAPER_PATH="$WALLPAPER_DIR/barch.png" ;;
+        img1084) WALLPAPER_PATH="$WALLPAPER_DIR/IMG_1084.png" ;;
+        7ucM1Zw) WALLPAPER_PATH="$WALLPAPER_DIR/7ucM1Zw.png" ;;
+        *)
+            printf 'Unknown theme in %s: %s\n' "$STATE_FILE" "$CURRENT" >&2
+            exit 1
+            ;;
+    esac
+fi
+
+if [ ! -f "$WALLPAPER_PATH" ]; then
+    printf 'Wallpaper not found: %s\n' "$WALLPAPER_PATH" >&2
+    exit 1
+fi
+
+if ! pgrep -x hyprpaper >/dev/null; then
+    nohup hyprpaper >"$RUNTIME_DIR/hyprpaper.log" 2>&1 9>&- &
+fi
+
+READY=false
+for _ in {1..25}; do
+    if hyprctl hyprpaper listactive >/dev/null 2>&1; then
+        READY=true
+        break
+    fi
+    sleep 0.2
+done
+
+if [ "$READY" != true ]; then
+    printf 'hyprpaper failed to become ready; see %s/hyprpaper.log\n' "$RUNTIME_DIR" >&2
+    exit 1
+fi
+
+hyprctl hyprpaper wallpaper ",$WALLPAPER_PATH" >/dev/null

@@ -1,0 +1,14 @@
+# Secretos y credenciales locales.
+.env
+.env.*
+**/.env
+**/.env.*
+**/credentials*
+**/secrets*
+
+# Estado efimero y respaldos locales.
+*.log
+*.tmp
+*~
+*.bak
+*.backup.*

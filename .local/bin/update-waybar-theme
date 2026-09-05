@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE="${1:?theme colors.json is required}"
+TARGET="$HOME/.config/waybar/theme.css"
+
+python3 - "$SOURCE" "$TARGET" <<'PY'
+import json
+import sys
+
+source, target = sys.argv[1:]
+with open(source, encoding="utf-8") as handle:
+    colors = json.load(handle)
+
+names = (
+    "background",
+    "on_background",
+    "surface",
+    "surface_container",
+    "surface_bright",
+    "on_surface",
+    "on_surface_variant",
+    "primary",
+    "primary_container",
+    "on_primary_container",
+)
+
+with open(target, "w", encoding="utf-8") as handle:
+    handle.write("/* Generated from the active Matugen theme. */\n")
+    for name in names:
+        if name in colors:
+            handle.write(f"@define-color {name} {colors[name]};\n")
+PY
+
+pkill -USR2 -x waybar 2>/dev/null || true

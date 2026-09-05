@@ -7,14 +7,12 @@ Guidelines for agentic coding agents working with the configuration files in thi
 ## 1. Project Overview
 
 This is a **dotfiles** repository containing configuration files for:
-- **Shell**: Fish Shell (interactive terminal)
-- **System Info**: Fastfetch
-- **Audio Visualizer**: CAVA
-- **Wallpaper Manager**: Waypaper
-- **Terminal**: Ghostty, Alacritty
-- **Editor**: Neovim, Zed
-- **Browser**: Brave, Chrome
-- **Misc**: Atuin, Yay, GH CLI
+- **Desktop**: Hyprland, Hypridle, Hyprlock, Waybar
+- **Shell**: Fish Shell
+- **Terminal**: Ghostty
+- **Launchers**: Wofi and Fuzzel
+- **Editor**: Neovim
+- **System monitor**: Btop
 
 ---
 
@@ -22,21 +20,14 @@ This is a **dotfiles** repository containing configuration files for:
 
 ```
 ~/.config/
+├── hypr/                  # Hyprland, Hypridle, and Hyprlock
+├── waybar/                # Status bar
+├── ghostty/               # Terminal
+├── wofi/                  # Application launcher
+├── fuzzel/                # Alternate launcher theme
 ├── fish/                  # Fish Shell config
-│   ├── config.fish        # Main config
-│   ├── conf.d/           # Additional configs
-│   └── functions/        # Custom functions
-├── fastfetch/            # System info display
-│   └── config.jsonc       # Fastfetch config
-├── cava/                  # Audio visualizer
-│   └── config
-├── waypaper/              # Wallpaper manager
-│   └── config.ini
-├── atuin/                 # Shell history
-│   └── config.toml
 ├── nvim/                  # Neovim (LazyVim)
-├── zed/                   # Zed editor
-└── yay/                   # AUR helper
+└── btop/                  # System monitor
 ```
 
 ---
@@ -71,10 +62,7 @@ end
 - Validate: `python3 -m json.tool file.json > /dev/null`
 
 ### TOML (.toml)
-- Locations: `atuin/config.toml`, `yazi/`, `nvim/stylua.toml`
-
-### INI (.ini)
-- Location: `waypaper/config.ini`
+- Location: `nvim/stylua.toml`
 
 ---
 
@@ -145,9 +133,10 @@ After modifying any config file:
 ## 9. Dependencies
 
 - Fish Shell 3.0+
-- Fastfetch, CAVA, Waypaper
-- Wayland compositor (Sway/Hyprland)
-- Tools: eza, bat, fzf, zoxide, yazi
+- Hyprland, Hypridle, Hyprlock, and Hyprpaper
+- Waybar, Ghostty, Wofi, and Fuzzel
+- Fish, Neovim, and Btop
+- Tools: eza, bat, fzf, zoxide, and yazi
 
 ---
 
